@@ -1,6 +1,5 @@
 from PIL import Image
 from PIL import ImageSequence
-
 from images2gif import writeGif
 
 
@@ -29,8 +28,8 @@ def remove_multiple_frames(input_filename, output_filename):
 
     image_index = 0
     images_size = len(images) - 1
-    while image_index <= images_size:
-        current_frame = images[image_index + 1]
+    while image_index < images_size:
+        current_frame = images[image_index]
         next_frame = images[image_index + 1]
         frame_repetition = 1
         while compare_image(current_frame, next_frame) < 0.001:
@@ -39,6 +38,10 @@ def remove_multiple_frames(input_filename, output_filename):
             if image_index >= images_size:
                 break
             next_frame = images[image_index + 1]
+
+        if image_index + 1 == images_size:
+            frame_durations.append(frame_repetition)
+            unique_frames.append(next_frame)
 
         unique_frames.append(current_frame)
         frame_durations.append(frame_repetition * original_duration / 1000.0)
