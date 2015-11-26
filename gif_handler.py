@@ -50,8 +50,8 @@ def remove_multiple_frames(input_filename, output_filename):
     print(unique_frames)
     print(frame_durations)
     assert len(unique_frames) == len(frame_durations)
-    writeGif(output_filename, unique_frames, dither=0, duration=frame_durations)
+    writeGif(output_filename, unique_frames, dither=0, subRectangles=False, nq=1, duration=frame_durations)
 
 
 if __name__ == '__main__':
-    remove_multiple_frames('gifs/ABC_3frames-per-character.gif', 'gifs/converted_ABC_3frames-per-character.gif')
+    remove_multiple_frames('gifs/abc.gif', 'gifs/converted_ABC_3frames-per-character.gif')
